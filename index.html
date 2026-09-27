@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jay Ambey Restaurant | Online Food Ordering</title>
+<meta name="description" content="Order delicious food from Jay Ambey Restaurant. Browse our complete menu and place your order through WhatsApp." />
+<meta property="og:title" content="Jay Ambey Restaurant | Online Food Ordering" />
+<meta property="og:description" content="Order delicious food from Jay Ambey Restaurant." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#FF7A00;--secondary:#FFB000;--bg:#0B0B0B;--card:#171717;--text:#FFFFFF;--text-secondary:#B8B8B8;--border:#2A2A2A;--danger:#E74C3C;--whatsapp:#25D366;--radius:16px;--header-h:72px;--transition:.3s cubic-bezier(.4,0,.2,1)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 20px)}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.container{max-width:1280px;margin:0 auto;padding:0 20px}
+/* HEADER */
+.header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(11,11,11,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:var(--transition)}
+.header.scrolled{border-bottom-color:var(--border);background:rgba(11,11,11,.95)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:var(--header-h);gap:20px}
+.logo{display:flex;flex-direction:column;line-height:1.2;flex-shrink:0}
+.logo-main{font-family:'Playfair Display',serif;font-weight:800;font-size:1.15rem;letter-spacing:.5px;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.logo-sub{font-size:.75rem;color:var(--text-secondary);font-weight:500}
+.nav{display:flex;gap:8px}
+.nav-link{padding:8px 16px;border-radius:8px;font-size:.9rem;font-weight:500;color:var(--text-secondary);transition:var(--transition);position:relative}
+.nav-link:hover,.nav-link.active{color:var(--text);background:rgba(255,122,0,.1)}
+.nav-link.active::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:20px;height:2px;background:var(--primary);border-radius:2px}
+.header-actions{display:flex;align-items:center;gap:10px}
+.header-btn{display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:10px;font-size:.85rem;font-weight:600;transition:var(--transition);position:relative;white-space:nowrap}
+.call-btn{background:rgba(255,122,0,.12);color:var(--primary);border:1px solid rgba(255,122,0,.3)}
+.call-btn:hover{background:var(--primary);color:#fff}
+.cart-btn{background:var(--primary);color:#fff}
+.cart-btn:hover{background:var(--secondary);transform:translateY(-1px)}
+.cart-count{position:absolute;top:-6px;right:-6px;background:var(--danger);color:#fff;font-size:.65rem;font-weight:700;min-width:18px;height:18px;border-radius:9px;display:none;align-items:center;justify-content:center;padding:0 4px}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:8px;border-radius:8px}
+.hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:var(--transition)}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+/* HERO */
+.hero{position:relative;min-height:92vh;display:flex;align-items:center;padding:calc(var(--header-h) + 40px) 0 60px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(11,11,11,.92) 0%,rgba(11,11,11,.75) 50%,rgba(11,11,11,.85) 100%)}
+.hero-content{position:relative;z-index:1;max-width:720px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,122,0,.15);border:1px solid rgba(255,122,0,.3);color:var(--primary);padding:6px 16px;border-radius:50px;font-size:.8rem;font-weight:600;margin-bottom:20px;animation:fadeInUp .6s ease both}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;margin-bottom:12px;animation:fadeInUp .6s .1s ease both}
+.hero-hindi{font-size:clamp(1rem,2.5vw,1.3rem);color:var(--secondary);margin-bottom:16px;animation:fadeInUp .6s .2s ease both}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:700;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px;animation:fadeInUp .6s .3s ease both}
+.hero-desc{font-size:clamp(.9rem,2vw,1.05rem);color:var(--text-secondary);margin-bottom:32px;max-width:560px;animation:fadeInUp .6s .4s ease both}
+.hero-buttons{display:flex;flex-wrap:wrap;gap:12px;animation:fadeInUp .6s .5s ease both}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 28px;border-radius:12px;font-size:.9rem;font-weight:700;letter-spacing:.3px;transition:var(--transition);white-space:nowrap;border:1.5px solid transparent}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;box-shadow:0 4px 20px rgba(255,122,0,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,122,0,.45)}
+.btn-outline{background:transparent;border-color:rgba(255,255,255,.2);color:var(--text)}
+.btn-outline:hover{border-color:var(--primary);color:var(--primary);background:rgba(255,122,0,.08)}
+.btn-whatsapp{background:var(--whatsapp);color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.3)}
+.btn-whatsapp:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,.45)}
+.btn-danger{background:rgba(231,76,60,.15);color:var(--danger);border-color:rgba(231,76,60,.3)}
+.btn-danger:hover{background:var(--danger);color:#fff}
+.btn-small{padding:8px 18px;font-size:.8rem}
+.btn-full{width:100%}
+/* CATEGORY BAR */
+.category-bar{position:sticky;top:var(--header-h);z-index:900;background:rgba(11,11,11,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 0}
+.category-scroll{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding-bottom:4px}
+.category-scroll::-webkit-scrollbar{display:none}
+.cat-chip{flex-shrink:0;padding:8px 18px;border-radius:50px;font-size:.82rem;font-weight:600;color:var(--text-secondary);background:var(--card);border:1px solid var(--border);transition:var(--transition);white-space:nowrap}
+.cat-chip:hover{border-color:var(--primary);color:var(--primary)}
+.cat-chip.active{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border-color:transparent;box-shadow:0 4px 16px rgba(255,122,0,.3)}
+/* SEARCH */
+.search-section{padding:28px 20px 8px}
+.search-box{display:flex;align-items:center;gap:12px;background:var(--card);border:1.5px solid var(--border);border-radius:14px;padding:14px 20px;max-width:640px;margin:0 auto;transition:var(--transition)}
+.search-box:focus-within{border-color:var(--primary);box-shadow:0 0 0 4px rgba(255,122,0,.1)}
+.search-icon{color:var(--text-secondary);font-size:1rem}
+.search-box input{flex:1;background:none;border:none;outline:none;color:var(--text);font-size:.95rem;font-family:inherit}
+.search-box input::placeholder{color:var(--text-secondary)}
+.search-clear{color:var(--text-secondary);font-size:.9rem;padding:4px;display:none}
+.search-clear.visible{display:block}
+/* SECTIONS */
+.section-header{text-align:center;margin-bottom:40px}
+.section-header.left{text-align:left}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.2rem);font-weight:800;margin-bottom:8px}
+.section-subtitle{color:var(--text-secondary);font-size:.95rem}
+/* OFFERS */
+.offers-section{padding:48px 20px 24px}
+.offers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.offer-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:var(--transition);cursor:pointer}
+.offer-card:hover{border-color:rgba(255,122,0,.4);transform:translateY(-4px);box-shadow:0 16px 48px rgba(255,122,0,.15)}
+.offer-card-img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.offer-card-body{padding:16px}
+.offer-card-body h3{font-size:1rem;font-weight:700;margin-bottom:4px}
+.offer-card-body p{font-size:.82rem;color:var(--text-secondary);margin-bottom:10px}
+.offer-card-price{font-size:1.1rem;font-weight:800;color:var(--primary)}
+/* MENU */
+.menu-section{padding:24px 20px 60px}
+.menu-category{margin-bottom:48px}
+.menu-category-header{display:flex;align-items:center;gap:14px;margin-bottom:24px;padding-bottom:14px;border-bottom:2px solid var(--border)}
+.menu-category-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(255,122,0,.15),rgba(255,176,0,.1));display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--primary);flex-shrink:0}
+.menu-category-header h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.food-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:var(--transition);cursor:pointer;display:flex;flex-direction:column}
+.food-card:hover{border-color:rgba(255,122,0,.4);transform:translateY(-4px);box-shadow:0 16px 48px rgba(255,122,0,.15)}
+.food-card-img-wrap{position:relative;overflow:hidden}
+.food-card-img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--radius) var(--radius) 0 0;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.food-card:hover .food-card-img{transform:scale(1.06)}
+.food-card-price-badge{position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);color:#fff;font-weight:700;font-size:.9rem;padding:4px 12px;border-radius:8px}
+.veg-indicator{position:absolute;top:10px;left:10px;width:20px;height:20px;border:2px solid #2ecc71;border-radius:4px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.5)}
+.veg-indicator::after{content:'';width:8px;height:8px;border-radius:50%;background:#2ecc71}
+.popular-badge{position:absolute;top:10px;right:10px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:6px;letter-spacing:.3px}
+.food-card-body{padding:14px;display:flex;flex-direction:column;flex:1}
+.food-card-body h3{font-size:.95rem;font-weight:700;margin-bottom:4px;line-height:1.3}
+.food-card-desc{font-size:.78rem;color:var(--text-secondary);line-height:1.4;margin-bottom:12px;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.food-card-footer{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.food-card-price{font-size:1rem;font-weight:800;color:var(--primary)}
+.add-btn{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-size:.78rem;font-weight:700;padding:7px 16px;border-radius:8px;transition:var(--transition);display:flex;align-items:center;gap:4px}
+.add-btn:hover{transform:scale(1.05);box-shadow:0 4px 16px rgba(255,122,0,.4)}
+/* ABOUT */
+.about-section{padding:80px 0;background:linear-gradient(180deg,var(--bg) 0%,#111 100%)}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.about-hindi{font-size:1.1rem;color:var(--secondary);margin-bottom:16px}
+.about-text p{color:var(--text-secondary);margin-bottom:16px;font-size:.95rem}
+.about-features{display:flex;flex-wrap:wrap;gap:16px;margin-top:24px}
+.feature{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);padding:12px 20px;border-radius:12px;font-size:.85rem;font-weight:600}
+.feature i{color:var(--primary);font-size:1rem}
+.about-image img{width:100%;border-radius:var(--radius);aspect-ratio:4/3;object-fit:cover}
+/* CONTACT */
+.contact-section{padding:80px 0}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-bottom:40px}
+.contact-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px 24px;text-align:center;transition:var(--transition)}
+.contact-card:hover{border-color:rgba(255,122,0,.4);transform:translateY(-4px)}
+.contact-card i{font-size:1.8rem;color:var(--primary);margin-bottom:16px}
+.contact-card h3{font-size:1rem;font-weight:700;margin-bottom:8px}
+.contact-card p,.contact-card a:not(.btn){color:var(--text-secondary);font-size:.9rem;display:block;margin-bottom:6px}
+.contact-card a:not(.btn):hover{color:var(--primary)}
+.contact-buttons{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+/* FOOTER */
+.footer{background:#060606;border-top:1px solid var(--border);padding:48px 0 0}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:32px}
+.footer-brand h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+.footer-brand p{color:var(--text-secondary);font-size:.85rem}
+.footer-desc{margin-top:8px}
+.footer-links h4,.footer-contact h4{font-size:.9rem;font-weight:700;margin-bottom:16px}
+.footer-links a,.footer-contact a{display:block;color:var(--text-secondary);font-size:.85rem;margin-bottom:10px;transition:var(--transition)}
+.footer-links a:hover,.footer-contact a:hover{color:var(--primary)}
+.footer-contact a i{width:18px;margin-right:6px}
+.footer-bottom{border-top:1px solid var(--border);padding:20px 0;text-align:center;font-size:.8rem;color:var(--text-secondary)}
+/* MOBILE CART BAR */
+.mobile-cart-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:950;background:var(--bg);border-top:1px solid var(--border);padding:10px 16px;padding-bottom:calc(10px + env(safe-area-inset-bottom))}
+.mobile-cart-bar button{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-weight:700;font-size:.95rem;padding:14px;border-radius:12px;transition:var(--transition)}
+.mobile-cart-bar button:active{transform:scale(.98)}
+.mobile-cart-total{margin-left:auto;background:rgba(0,0,0,.2);padding:2px 12px;border-radius:8px}
+/* CART DRAWER */
+.cart-overlay,.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);z-index:1100;opacity:0;visibility:hidden;transition:var(--transition)}
+.cart-overlay.open,.modal-overlay.open{opacity:1;visibility:visible}
+.cart-drawer{position:fixed;top:0;right:0;width:420px;max-width:100%;height:100%;background:var(--bg);border-left:1px solid var(--border);z-index:1200;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.cart-drawer.open{transform:translateX(0)}
+.cart-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--border)}
+.cart-header h2{font-size:1.1rem;font-weight:700;display:flex;align-items:center;gap:10px}
+.cart-header h2 i{color:var(--primary)}
+.cart-close{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--card);border:1px solid var(--border);transition:var(--transition)}
+.cart-close:hover{background:var(--danger);border-color:var(--danger)}
+.cart-items{flex:1;overflow-y:auto;padding:16px 24px}
+.cart-empty{text-align:center;padding:60px 20px;color:var(--text-secondary)}
+.cart-empty i{font-size:3rem;color:var(--border);margin-bottom:16px}
+.cart-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--border)}
+.cart-item-img{width:64px;height:64px;border-radius:10px;object-fit:cover;flex-shrink:0}
+.cart-item-info{flex:1;min-width:0}
+.cart-item-info h4{font-size:.88rem;font-weight:600;margin-bottom:2px}
+.cart-item-size{font-size:.75rem;color:var(--primary);font-weight:600;margin-bottom:6px}
+.cart-item-bottom{display:flex;align-items:center;justify-content:space-between}
+.qty-controls{display:flex;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.qty-btn{width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--primary);transition:var(--transition)}
+.qty-btn:hover{background:rgba(255,122,0,.15)}
+.qty-value{width:32px;text-align:center;font-size:.85rem;font-weight:700}
+.cart-item-price{font-weight:700;font-size:.9rem;color:var(--primary)}
+.cart-item-remove{color:var(--text-secondary);font-size:.8rem;transition:var(--transition);padding:4px}
+.cart-item-remove:hover{color:var(--danger)}
+.cart-summary{padding:16px 24px;border-top:1px solid var(--border)}
+.summary-row{display:flex;justify-content:space-between;font-size:.88rem;margin-bottom:10px;color:var(--text-secondary)}
+.summary-row.total{font-size:1.05rem;font-weight:800;color:var(--text);border-top:1px solid var(--border);padding-top:12px;margin-top:4px}
+.summary-row.total span:last-child{color:var(--primary)}
+.cart-actions{padding:16px 24px;padding-bottom:calc(16px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--border)}
+/* MODALS */
+.food-modal,.checkout-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:var(--bg);border:1px solid var(--border);border-radius:20px;z-index:1300;opacity:0;visibility:hidden;transition:var(--transition);max-height:90vh}
+.food-modal{width:480px;max-width:calc(100% - 32px);overflow-y:auto}
+.checkout-modal{width:520px;max-width:calc(100% - 32px);display:flex;flex-direction:column}
+.food-modal.open,.checkout-modal.open{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1)}
+.modal-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:10;transition:var(--transition)}
+.modal-close:hover{background:var(--danger)}
+.modal-food-img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:20px 20px 0 0}
+.modal-food-content{padding:24px}
+.modal-food-content h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;margin-bottom:8px}
+.modal-food-desc{color:var(--text-secondary);font-size:.9rem;margin-bottom:20px;line-height:1.5}
+.modal-size-options{display:flex;gap:12px;margin-bottom:20px}
+.size-option{flex:1;padding:14px;border-radius:12px;border:1.5px solid var(--border);background:var(--card);text-align:center;cursor:pointer;transition:var(--transition)}
+.size-option.selected{border-color:var(--primary);background:rgba(255,122,0,.1)}
+.size-option .size-label{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.size-option .size-price{font-size:1rem;font-weight:800;color:var(--primary)}
+.modal-qty{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.modal-qty label{font-size:.9rem;font-weight:600}
+.modal-add-btn{width:100%;padding:16px;font-size:1rem}
+.modal-add-btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
+.checkout-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--border);flex-shrink:0;position:relative}
+.checkout-header h2{font-size:1.2rem;font-weight:700}
+.checkout-header .modal-close{position:static;background:var(--card);border:1px solid var(--border)}
+.checkout-body{padding:24px;overflow-y:auto}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-size:.85rem;font-weight:600;margin-bottom:8px}
+.form-group input,.form-group textarea{width:100%;padding:12px 16px;background:var(--card);border:1.5px solid var(--border);border-radius:10px;color:var(--text);font-size:.9rem;font-family:inherit;outline:none;transition:var(--transition)}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(255,122,0,.1)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.radio-group{display:flex;gap:10px;flex-wrap:wrap}
+.radio-label{display:flex;align-items:center;gap:8px;padding:10px 18px;background:var(--card);border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:var(--transition);font-size:.85rem;font-weight:500;flex:1;min-width:140px}
+.radio-label:has(input:checked){border-color:var(--primary);background:rgba(255,122,0,.1)}
+.radio-label input{accent-color:var(--primary);width:auto;margin:0}
+.payment-note{margin-top:10px;font-size:.8rem;color:var(--text-secondary);display:flex;align-items:center;gap:6px}
+.checkout-summary{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:20px}
+.checkout-summary .summary-row{margin-bottom:8px}
+/* TOAST */
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--card);border:1px solid var(--border);color:var(--text);padding:12px 24px;border-radius:12px;font-size:.85rem;font-weight:600;z-index:2000;opacity:0;visibility:hidden;transition:var(--transition);box-shadow:0 8px 32px rgba(0,0,0,.4);display:flex;align-items:center;gap:8px}
+.toast.show{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.toast.success i{color:#2ecc71}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+/* RESPONSIVE */
+@media(max-width:1024px){.nav{position:fixed;top:var(--header-h);left:0;right:0;background:rgba(11,11,11,.98);backdrop-filter:blur(20px);flex-direction:column;padding:16px;gap:4px;border-bottom:1px solid var(--border);transform:translateY(-120%);transition:transform .35s cubic-bezier(.4,0,.2,1);z-index:999}.nav.open{transform:translateY(0)}.nav-link{padding:14px 16px;font-size:1rem}.hamburger{display:flex}.about-inner{grid-template-columns:1fr;gap:32px}.footer-inner{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){:root{--header-h:64px}.header-btn span{display:none}.header-btn{padding:8px 12px}.hero{min-height:80vh;padding-top:calc(var(--header-h) + 24px)}.btn{padding:11px 20px;font-size:.82rem}.menu-grid{grid-template-columns:repeat(2,1fr);gap:12px}.food-card-body{padding:10px}.food-card-body h3{font-size:.85rem}.food-card-desc{font-size:.72rem}.food-card-price{font-size:.9rem}.add-btn{font-size:.72rem;padding:6px 12px}.mobile-cart-bar{display:block}body{padding-bottom:76px}.cart-drawer{width:100%;border-left:none}.offers-grid{grid-template-columns:repeat(2,1fr);gap:12px}.offer-card-body{padding:12px}.footer-inner{grid-template-columns:1fr;gap:28px}.contact-buttons{flex-direction:column}.contact-buttons .btn{width:100%}.form-row{grid-template-columns:1fr}.checkout-modal,.food-modal{width:calc(100% - 16px)}.modal-size-options{flex-direction:column}}
+@media(max-width:380px){.logo-main{font-size:.95rem}.logo-sub{font-size:.65rem}.menu-grid{gap:10px}.food-card-body{padding:8px}.food-card-footer{flex-direction:column;align-items:flex-start;gap:6px}.add-btn{width:100%;justify-content:center}}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--primary)}
+</style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="header-inner container">
+    <a href="#home" class="logo" aria-label="Jay Ambey Restaurant Home">
+      <span class="logo-main">JAY AMBEY RESTAURANT</span>
+      <span class="logo-sub">जय अम्बे रेस्टोरेंट</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Main navigation">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#menu" class="nav-link">Menu</a>
+      <a href="#offers" class="nav-link">Offers</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a href="tel:07080003020" class="header-btn call-btn" aria-label="Call restaurant">
+        <i class="fas fa-phone"></i><span>Call</span>
+      </a>
+      <button class="header-btn cart-btn" id="cartBtn" aria-label="Open cart">
+        <i class="fas fa-shopping-bag"></i><span>Cart</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1920&q=80" alt="Delicious Indian food spread" />
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content container">
+    <div class="hero-badge"><i class="fas fa-star"></i> Fresh &amp; Authentic</div>
+    <h1 class="hero-title">Authentic Taste. Fresh Ingredients. Happy Moments.</h1>
+    <p class="hero-hindi">हर निवाले में स्वाद और प्यार</p>
+    <h2 class="hero-name">Jay Ambey Restaurant</h2>
+    <p class="hero-desc">Delicious Indian, Chinese, South Indian, Pizza, Snacks, Beverages &amp; More</p>
+    <div class="hero-buttons">
+      <button class="btn btn-primary" id="heroOrderBtn"><i class="fas fa-utensils"></i> ORDER NOW</button>
+      <a href="#menu" class="btn btn-outline"><i class="fas fa-book-open"></i> VIEW MENU</a>
+      <a href="tel:07080003020" class="btn btn-outline"><i class="fas fa-phone"></i> CALL NOW</a>
+      <a href="https://maps.app.goo.gl/p7gees6ppqAbLjW29?g_st=ac" target="_blank" rel="noopener" class="btn btn-outline"><i class="fas fa-location-dot"></i> GET DIRECTIONS</a>
+    </div>
+  </div>
+</section>
+
+<section class="category-bar" id="categoryBar">
+  <div class="container"><div class="category-scroll" id="categoryScroll"></div></div>
+</section>
+
+<section class="search-section container">
+  <div class="search-box">
+    <i class="fas fa-search search-icon"></i>
+    <input type="text" id="searchInput" placeholder="🔍 Search your favourite food..." aria-label="Search food items" />
+    <button class="search-clear" id="searchClear" aria-label="Clear search"><i class="fas fa-times"></i></button>
+  </div>
+</section>
+
+<section class="offers-section container" id="offers">
+  <div class="section-header">
+    <h2 class="section-title">Today's Specials</h2>
+    <p class="section-subtitle">Chef's handpicked favourites from our kitchen</p>
+  </div>
+  <div class="offers-grid" id="offersGrid"></div>
+</section>
+
+<section class="menu-section container" id="menu">
+  <div class="section-header">
+    <h2 class="section-title">Our Complete Menu</h2>
+    <p class="section-subtitle">Explore our wide range of delicious dishes</p>
+  </div>
+  <div id="menuContainer"></div>
+</section>
+
+<section class="about-section" id="about">
+  <div class="container about-inner">
+    <div class="about-text">
+      <div class="section-header left"><h2 class="section-title">About Jay Ambey Restaurant</h2></div>
+      <p class="about-hindi">जय अम्बे रेस्टोरेंट</p>
+      <p>Enjoy delicious vegetarian food, refreshing beverages, snacks and a wide variety of Indian and Chinese dishes.</p>
+      <p>From crispy South Indian dosas to rich Paneer Butter Masala, from sizzling Chinese starters to refreshing mocktails — we serve food made with love and the freshest ingredients.</p>
+      <div class="about-features">
+        <div class="feature"><i class="fas fa-leaf"></i><span>Pure Vegetarian</span></div>
+        <div class="feature"><i class="fas fa-clock"></i><span>Quick Service</span></div>
+        <div class="feature"><i class="fas fa-heart"></i><span>Made with Love</span></div>
+      </div>
+    </div>
+    <div class="about-image">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="Jay Ambey Restaurant interior" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Contact Us</h2>
+      <p class="section-subtitle">We'd love to hear from you</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <i class="fas fa-phone"></i>
+        <h3>Phone</h3>
+        <a href="tel:07080003020">07080003020</a>
+      </div>
+      <div class="contact-card">
+        <i class="fas fa-location-dot"></i>
+        <h3>Location</h3>
+        <p>Jay Ambey Restaurant</p>
+        <a href="https://maps.app.goo.gl/p7gees6ppqAbLjW29?g_st=ac" target="_blank" rel="noopener" class="btn btn-small">GET DIRECTIONS</a>
+      </div>
+      <div class="contact-card">
+        <i class="fas fa-clock"></i>
+        <h3>Opening Hours</h3>
+        <p>Mon – Sun</p>
+        <p>11:00 AM – 11:00 PM</p>
+      </div>
+    </div>
+    <div class="contact-buttons">
+      <a href="tel:07080003020" class="btn btn-primary"><i class="fas fa-phone"></i> CALL NOW</a>
+      <a href="https://wa.me/917080003020?text=Hello%20Jay%20Ambey%20Restaurant%2C%20I%20want%20to%20place%20an%20order." target="_blank" rel="noopener" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
+      <a href="https://maps.app.goo.gl/p7gees6ppqAbLjW29?g_st=ac" target="_blank" rel="noopener" class="btn btn-outline"><i class="fas fa-location-dot"></i> GET DIRECTIONS</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <h3>JAY AMBEY RESTAURANT</h3>
+      <p>जय अम्बे रेस्टोरेंट</p>
+      <p class="footer-desc">Delicious vegetarian food &amp; beverages</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="#home">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#offers">Offers</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <a href="tel:07080003020"><i class="fas fa-phone"></i> 07080003020</a>
+      <a href="https://maps.app.goo.gl/p7gees6ppqAbLjW29?g_st=ac" target="_blank" rel="noopener"><i class="fas fa-location-dot"></i> Get Directions</a>
+      <a href="https://wa.me/917080003020" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>&copy; 2026 Jay Ambey Restaurant. All rights reserved.</p></div>
+</footer>
+
+<div class="mobile-cart-bar" id="mobileCartBar">
+  <button id="mobileCartBtn">
+    <i class="fas fa-shopping-bag"></i>
+    <span>View Cart</span>
+    <span class="mobile-cart-total" id="mobileCartTotal">₹0</span>
+  </button>
+</div>
+
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+  <div class="cart-header">
+    <h2><i class="fas fa-shopping-bag"></i> Your Cart</h2>
+    <button class="cart-close" id="cartClose" aria-label="Close cart"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-summary" id="cartSummary">
+    <div class="summary-row"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+    <div class="summary-row"><span>Delivery</span><span id="cartDelivery">₹0</span></div>
+    <div class="summary-row total"><span>Total</span><span id="cartTotal">₹0</span></div>
+  </div>
+  <div class="cart-actions" id="cartActions">
+    <button class="btn btn-outline btn-full" id="continueShoppingBtn">CONTINUE SHOPPING</button>
+    <button class="btn btn-primary btn-full" id="checkoutBtn">CHECKOUT</button>
+    <button class="btn btn-danger btn-full" id="clearCartBtn">CLEAR CART</button>
+  </div>
+</aside>
+
+<div class="modal-overlay" id="foodModalOverlay"></div>
+<div class="food-modal" id="foodModal" role="dialog" aria-label="Food details">
+  <button class="modal-close" id="foodModalClose" aria-label="Close"><i class="fas fa-times"></i></button>
+  <div class="modal-body" id="foodModalBody"></div>
+</div>
+
+<div class="modal-overlay" id="checkoutOverlay"></div>
+<div class="checkout-modal" id="checkoutModal" role="dialog" aria-label="Checkout">
+  <div class="checkout-header">
+    <h2>Checkout</h2>
+    <button class="modal-close" id="checkoutClose" aria-label="Close"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="checkout-body">
+    <form id="checkoutForm">
+      <div class="form-group">
+        <label for="custName">Customer Name *</label>
+        <input type="text" id="custName" required placeholder="Enter your name" />
+      </div>
+      <div class="form-group">
+        <label for="custMobile">Mobile Number *</label>
+        <input type="tel" id="custMobile" required placeholder="10-digit mobile number" pattern="[0-9]{10}" />
+      </div>
+      <div class="form-group">
+        <label>Order Type *</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="orderType" value="Home Delivery" checked /><span>Home Delivery</span></label>
+          <label class="radio-label"><input type="radio" name="orderType" value="Restaurant Pickup" /><span>Restaurant Pickup</span></label>
+        </div>
+      </div>
+      <div id="addressFields">
+        <div class="form-group">
+          <label for="custAddress">Address *</label>
+          <textarea id="custAddress" rows="2" placeholder="House no, street, area" required></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="custLandmark">Landmark</label>
+            <input type="text" id="custLandmark" placeholder="Near..." />
+          </div>
+          <div class="form-group">
+            <label for="custPincode">Pincode</label>
+            <input type="text" id="custPincode" placeholder="6-digit" pattern="[0-9]{6}" />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Payment Method *</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="payment" value="Cash on Delivery" checked /><span>Cash on Delivery</span></label>
+          <label class="radio-label"><input type="radio" name="payment" value="Pay at Restaurant" /><span>Pay at Restaurant</span></label>
+        </div>
+        <p class="payment-note"><i class="fas fa-info-circle"></i> Online UPI Payment — Coming Soon</p>
+      </div>
+      <div class="checkout-summary" id="checkoutSummary"></div>
+      <button type="submit" class="btn btn-whatsapp btn-full" id="placeOrderBtn">
+        <i class="fab fa-whatsapp"></i> PLACE ORDER ON WHATSAPP
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== CONFIG ===== */
+const RESTAURANT_PHONE = "07080003020";
+const WHATSAPP_NUMBER = "917080003020";
+const DELIVERY_CHARGE = 30;
+const MINIMUM_ORDER = 100;
+const MAPS_LINK = "https://maps.app.goo.gl/p7gees6ppqAbLjW29?g_st=ac";
+
+/* ===== FALLBACK IMAGE ===== */
+const FALLBACK_FOOD_IMAGE = "data:image/svg+xml," + encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+    <defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF7A00"/><stop offset="100%" style="stop-color:#FFB000"/>
+    </linearGradient></defs>
+    <rect width="400" height="400" fill="#171717"/>
+    <circle cx="200" cy="160" r="70" fill="url(#g)" opacity="0.15"/>
+    <text x="200" y="180" font-size="80" text-anchor="middle" dominant-baseline="central">🍽️</text>
+    <text x="200" y="260" font-size="16" fill="#B8B8B8" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">Jay Ambey Restaurant</text>
+    <text x="200" y="290" font-size="12" fill="#666" text-anchor="middle" font-family="Inter,sans-serif">Image coming soon</text>
+  </svg>`
+);
+
+/* ===== IMAGE HELPERS (Unsplash food photos, 1:1) ===== */
+const u = (id) => `https://images.unsplash.com/photo-${id}?w=400&h=400&fit=crop&q=80`;
+const IMG = {
+  dosa:      u("1630383249896-424e482df921"),
+  idly:      u("1589301760014-d929f3979dbc"),
+  uttapam:   u("1630383249896-424e482df921"),
+  rava:      u("1668236543090-82eba5ee5976"),
+  noodles:   u("1585032226651-759b368d7246"),
+  chopsuey:  u("1612929633738-8fe44f7ec841"),
+  fries:     u("1573080496219-bb080dd4f877"),
+  momos:     u("1534422298391-e4f8c172dddb"),
+  tea:       u("1544787219-7f47ccb76574"),
+  coffee:    u("1461023058943-07fcbe16d735"),
+  coldcoffee:u("1461023058943-07fcbe16d735"),
+  colddrink: u("1581005870760-8e5b9c1b8b9b"),
+  buttermilk:u("1571091718767-18b5b1457add"),
+  lassi:     u("1571091718767-18b5b1457add"),
+  lime:      u("1523677011781-c91d1bbe2f9e"),
+  mojito:    u("1544145945-f90425340c7e"),
+  mocktail:  u("1551538827-9c037cb4f32a"),
+  pizza:     u("1565299624946-b28f40a0ae38"),
+  roll:      u("1626700051175-6818013e1d4f"),
+  samosa:    u("1601050690597-df0568f70950"),
+  dhokla:    u("1601050690597-df0568f70950"),
+  pavbhaji:  u("1606491956689-2ea866880c84"),
+  shake:     u("1572490122747-3968b75cc699"),
+  thali:     u("1626509653292-1b5e4b8b7b5c"),
+  manchurian:u("1612929633738-8fe44f7ec841"),
+  paneer:    u("1631452180519-c014fe946bc7"),
+  gobi:      u("1568901346375-23c9450c58cd"),
+  mushroom:  u("1504544750208-dc0358e63f7f"),
+  springroll:u("1626700051175-6818013e1d4f"),
+  honey:     u("1573080496219-bb080dd4f877"),
+  kebab:     u("1599487488170-d11ec9c172f0"),
+  dessert:   u("1551024506-0bccd828d307"),
+  gulab:     u("1601303516421-27c1b6bcd5c4"),
+  rasmalai:  u("1601303516421-27c1b6bcd5c4"),
+  halwa:     u("1601303516421-27c1b6bcd5c4"),
+  kheer:     u("1551024506-0bccd828d307"),
+  icecream:  u("1551024506-0bccd828d307"),
+  poha:      u("1596797038530-2c107229654b"),
+  upma:      u("1589301760014-d929f3979dbc"),
+  paratha:   u("1601050690597-df0568f70950"),
+  puri:      u("1626509653292-1b5e4b8b7b5c"),
+  misal:     u("1601050690597-df0568f70950"),
+  sandwich:  u("1528735602780-2552fd46c7af"),
+  burger:    u("1568901346375-23c9450c58cd"),
+  rice:      u("1512058564366-18510be2db19"),
+  biryani:   u("1563379091339-03b21ab4a4f8"),
+  soup:      u("1547592166-23ac45744acd"),
+  pasta:     u("1621996346565-e3dbc646d9a9"),
+  maggie:    u("1612929633738-8fe44f7ec841"),
+  salad:     u("1512621776951-a57141f2eefd"),
+  papad:     u("1601050690117-94f5f6fa8bd7"),
+  raita:     u("1571091718767-18b5b1457add"),
+  dal:       u("1546833999-b9f581a1996d"),
+  tandoori:  u("1599487488170-d11ec9c172f0"),
+  aloo:      u("1585238342024-78d387f4a707"),
+  bhindi:    u("1601050690597-df0568f70950"),
+  chana:     u("1546833999-b9f581a1996d"),
+  kofta:     u("1631452180519-c014fe946bc7"),
+  kaju:      u("1631452180519-c014fe946bc7")
+};
+
+/* ===== COMPLETE MENU ===== */
+const menuItems = [
+  // SOUTH INDIAN
+  {id:"si-001",category:"South Indian",name:"Plain Dosa",price:60,image:IMG.dosa,description:"Crispy golden dosa served with sambar and coconut chutney."},
+  {id:"si-002",category:"South Indian",name:"Masala Dosa",price:80,image:IMG.dosa,description:"Crispy dosa stuffed with spiced potato filling.",popular:true},
+  {id:"si-003",category:"South Indian",name:"Paneer Masala Dosa",price:120,image:IMG.dosa,description:"Dosa filled with rich paneer bhurji and spices."},
+  {id:"si-004",category:"South Indian",name:"Cheese Masala Dosa",price:130,image:IMG.dosa,description:"Masala dosa topped with melted cheese."},
+  {id:"si-005",category:"South Indian",name:"Onion Dosa",price:90,image:IMG.dosa,description:"Dosa topped with fresh onions and green chilli."},
+  {id:"si-006",category:"South Indian",name:"Idly (2 pcs)",price:50,image:IMG.idly,description:"Steamed soft idlis served with sambar and chutney."},
+  {id:"si-007",category:"South Indian",name:"Medu Vada (2 pcs)",price:60,image:IMG.idly,description:"Crispy urad dal vadas, soft inside and crunchy outside."},
+  {id:"si-008",category:"South Indian",name:"Uttapam",price:90,image:IMG.uttapam,description:"Thick pancake topped with onions, tomato and capsicum."},
+  {id:"si-009",category:"South Indian",name:"Rava Dosa",price:100,image:IMG.rava,description:"Crispy semolina dosa with a lacy texture."},
+
+  // CHOPSUEY
+  {id:"ch-001",category:"Chopsuey",name:"Veg Chopsuey",price:140,image:IMG.chopsuey,description:"Crispy noodles topped with mixed veg gravy."},
+  {id:"ch-002",category:"Chopsuey",name:"Paneer Chopsuey",price:180,image:IMG.chopsuey,description:"Crispy noodles with paneer and Chinese gravy.",popular:true},
+  {id:"ch-003",category:"Chopsuey",name:"Manchurian Chopsuey",price:170,image:IMG.chopsuey,description:"Noodles topped with spicy Manchurian balls."},
+
+  // FRIES / MOMOS
+  {id:"fm-001",category:"Fries / Momos",name:"French Fries",price:80,image:IMG.fries,description:"Classic crispy golden potato fries."},
+  {id:"fm-002",category:"Fries / Momos",name:"Masala Fries",price:100,image:IMG.fries,description:"Crispy fries tossed in spicy masala."},
+  {id:"fm-003",category:"Fries / Momos",name:"Cheese Fries",price:120,image:IMG.fries,description:"Fries topped with melted cheese sauce."},
+  {id:"fm-004",category:"Fries / Momos",name:"Peri Peri Fries",price:110,image:IMG.fries,description:"Fries with tangy peri peri seasoning."},
+  {id:"fm-005",category:"Fries / Momos",name:"Veg Momos (Steamed)",price:80,image:IMG.momos,description:"Steamed dumplings with vegetable filling.",popular:true},
+  {id:"fm-006",category:"Fries / Momos",name:"Veg Momos (Fried)",price:100,image:IMG.momos,description:"Crispy fried veg momos."},
+  {id:"fm-007",category:"Fries / Momos",name:"Paneer Momos",price:120,image:IMG.momos,description:"Momos stuffed with spiced paneer."},
+  {id:"fm-008",category:"Fries / Momos",name:"Cheese Corn Momos",price:130,image:IMG.momos,description:"Momos with cheese and sweet corn filling."},
+
+  // BEVERAGES
+  {id:"bv-001",category:"Beverages",name:"Tea",price:20,image:IMG.tea,description:"Hot Indian masala chai."},
+  {id:"bv-002",category:"Beverages",name:"Coffee",price:30,image:IMG.coffee,description:"Hot filter coffee."},
+  {id:"bv-003",category:"Beverages",name:"Cold Coffee",price:70,image:IMG.coldcoffee,description:"Chilled creamy cold coffee.",popular:true},
+  {id:"bv-004",category:"Beverages",name:"Cold Drink",price:40,image:IMG.colddrink,description:"Chilled soft drink."},
+  {id:"bv-005",category:"Beverages",name:"Buttermilk",price:40,image:IMG.buttermilk,description:"Refreshing spiced buttermilk."},
+  {id:"bv-006",category:"Beverages",name:"Lassi",price:60,image:IMG.lassi,description:"Sweet or salted yogurt drink."},
+  {id:"bv-007",category:"Beverages",name:"Fresh Lime Soda",price:50,image:IMG.lime,description:"Refreshing lime soda."},
+
+  // REFRESHERS
+  {id:"rf-001",category:"Refreshers",name:"Virgin Mojito",price:90,image:IMG.mojito,description:"Minty refreshing virgin mojito.",popular:true},
+  {id:"rf-002",category:"Refreshers",name:"Blue Lagoon",price:100,image:IMG.mocktail,description:"Blue curacao flavoured mocktail."},
+  {id:"rf-003",category:"Refreshers",name:"Watermelon Cooler",price:90,image:IMG.mocktail,description:"Fresh watermelon cooler."},
+  {id:"rf-004",category:"Refreshers",name:"Green Apple Fizz",price:100,image:IMG.mocktail,description:"Tangy green apple fizz."},
+  {id:"rf-005",category:"Refreshers",name:"Strawberry Lemonade",price:90,image:IMG.mocktail,description:"Sweet strawberry lemonade."},
+
+  // PIZZA
+  {id:"pz-001",category:"Pizza",name:"Plain Cheese Pizza",price:120,image:IMG.pizza,description:"Classic cheese pizza with tomato sauce."},
+  {id:"pz-002",category:"Pizza",name:"Margherita Pizza",price:140,image:IMG.pizza,description:"Cheese, tomato and basil pizza.",popular:true},
+  {id:"pz-003",category:"Pizza",name:"Veggie Pizza",price:160,image:IMG.pizza,description:"Loaded with capsicum, onion, tomato and corn."},
+  {id:"pz-004",category:"Pizza",name:"Paneer Pizza",price:180,image:IMG.pizza,description:"Topped with spiced paneer cubes."},
+  {id:"pz-005",category:"Pizza",name:"Tandoori Paneer Pizza",price:200,image:IMG.pizza,description:"Tandoori sauce, paneer and onion.",popular:true},
+  {id:"pz-006",category:"Pizza",name:"Mexican Pizza",price:190,image:IMG.pizza,description:"Spicy Mexican style pizza with jalapenos."},
+  {id:"pz-007",category:"Pizza",name:"Cheese Burst Pizza",price:220,image:IMG.pizza,description:"Extra cheese loaded pizza."},
+
+  // KATHI ROLL
+  {id:"kr-001",category:"Kathi Roll",name:"Veg Kathi Roll",price:80,image:IMG.roll,description:"Soft roti wrap with spiced veggies."},
+  {id:"kr-002",category:"Kathi Roll",name:"Paneer Kathi Roll",price:110,image:IMG.roll,description:"Paneer tikka wrapped in soft roti.",popular:true},
+  {id:"kr-003",category:"Kathi Roll",name:"Egg Kathi Roll",price:100,image:IMG.roll,description:"Classic egg kathi roll."},
+  {id:"kr-004",category:"Kathi Roll",name:"Cheese Kathi Roll",price:120,image:IMG.roll,description:"Roll with extra cheese."},
+
+  // SNACKS
+  {id:"sn-001",category:"Snacks",name:"Samosa (2 pcs)",price:30,image:IMG.samosa,description:"Crispy samosas with spiced potato filling."},
+  {id:"sn-002",category:"Snacks",name:"Vada Pav",price:40,image:IMG.samosa,description:"Mumbai-style vada pav.",popular:true},
+  {id:"sn-003",category:"Snacks",name:"Bread Pakoda",price:30,image:IMG.samosa,description:"Crispy bread pakoda."},
+  {id:"sn-004",category:"Snacks",name:"Khaman Dhokla",price:50,image:IMG.dhokla,description:"Soft and spongy dhokla."},
+  {id:"sn-005",category:"Snacks",name:"Bhajiya",price:60,image:IMG.samosa,description:"Mixed vegetable fritters."},
+  {id:"sn-006",category:"Snacks",name:"Pav Bhaji",price:90,image:IMG.pavbhaji,description:"Spicy mashed vegetable curry with buttered pav.",popular:true},
+
+  // MOCKTAILS
+  {id:"mk-001",category:"Mocktails",name:"Virgin Mojito",price:90,image:IMG.mojito,description:"Mint, lime and soda mocktail."},
+  {id:"mk-002",category:"Mocktails",name:"Blue Curacao Mocktail",price:110,image:IMG.mocktail,description:"Blue curacao with lemon and soda."},
+  {id:"mk-003",category:"Mocktails",name:"Watermelon Mojito",price:100,image:IMG.mojito,description:"Fresh watermelon with mint."},
+  {id:"mk-004",category:"Mocktails",name:"Mango Mojito",price:100,image:IMG.mojito,description:"Sweet mango with mint and lime."},
+
+  // SHAKES
+  {id:"sh-001",category:"Shakes",name:"Chocolate Shake",price:90,image:IMG.shake,description:"Rich chocolate milkshake.",popular:true},
+  {id:"sh-002",category:"Shakes",name:"Oreo Shake",price:100,image:IMG.shake,description:"Creamy Oreo milkshake."},
+  {id:"sh-003",category:"Shakes",name:"Strawberry Shake",price:90,image:IMG.shake,description:"Fresh strawberry milkshake."},
+  {id:"sh-004",category:"Shakes",name:"Mango Shake",price:80,image:IMG.shake,description:"Sweet mango milkshake."},
+  {id:"sh-005",category:"Shakes",name:"Butterscotch Shake",price:100,image:IMG.shake,description:"Creamy butterscotch shake."},
+  {id:"sh-006",category:"Shakes",name:"KitKat Shake",price:110,image:IMG.shake,description:"KitKat blended milkshake."},
+
+  // THALI
+  {id:"th-001",category:"Thali",name:"Veg Thali",price:150,image:IMG.thali,description:"Dal, rice, roti, sabzi, salad and sweet.",popular:true},
+  {id:"th-002",category:"Thali",name:"Special Thali",price:200,image:IMG.thali,description:"Premium thali with paneer, dal, rice, roti and dessert."},
+  {id:"th-003",category:"Thali",name:"Roti Sabzi Thali",price:120,image:IMG.thali,description:"Roti, sabzi, dal, rice and salad."},
+
+  // CHINESE STARTER
+  {id:"cs-001",category:"Chinese Starter",name:"Veg Manchurian (Dry)",price:140,image:IMG.manchurian,description:"Crispy veg balls in Manchurian sauce.",popular:true},
+  {id:"cs-002",category:"Chinese Starter",name:"Paneer Chilli (Dry)",price:180,image:IMG.paneer,description:"Spicy chilli paneer."},
+  {id:"cs-003",category:"Chinese Starter",name:"Gobi Manchurian",price:140,image:IMG.gobi,description:"Cauliflower Manchurian."},
+  {id:"cs-004",category:"Chinese Starter",name:"Mushroom Chilli",price:160,image:IMG.mushroom,description:"Spicy chilli mushroom."},
+  {id:"cs-005",category:"Chinese Starter",name:"Spring Roll",price:120,image:IMG.springroll,description:"Crispy veg spring rolls."},
+  {id:"cs-006",category:"Chinese Starter",name:"Honey Chilli Potato",price:130,image:IMG.honey,description:"Crispy potato in honey chilli sauce."},
+
+  // CHINESE MAINCOURSE
+  {id:"cm-001",category:"Chinese Maincourse",name:"Veg Manchurian (Gravy)",price:160,image:IMG.manchurian,description:"Manchurian balls in rich gravy."},
+  {id:"cm-002",category:"Chinese Maincourse",name:"Paneer Chilli (Gravy)",price:200,image:IMG.paneer,description:"Chilli paneer with gravy."},
+  {id:"cm-003",category:"Chinese Maincourse",name:"Veg Kolhapuri",price:170,image:IMG.paneer,description:"Spicy Kolhapuri veg curry."},
+  {id:"cm-004",category:"Chinese Maincourse",name:"Chinese Bhel",price:130,image:IMG.noodles,description:"Crispy noodles with Chinese sauce."},
+
+  // INDIAN COMBOS
+  {id:"ic-001",category:"Indian Combos",name:"Dal Chawal Combo",price:120,image:IMG.dal,description:"Dal and rice combo."},
+  {id:"ic-002",category:"Indian Combos",name:"Paneer Butter Masala + Rice",price:220,image:IMG.paneer,description:"Creamy paneer curry with rice."},
+  {id:"ic-003",category:"Indian Combos",name:"Chole Bhature",price:130,image:IMG.chana,description:"Spicy chickpeas with fluffy bhature.",popular:true},
+  {id:"ic-004",category:"Indian Combos",name:"Rajma Chawal",price:130,image:IMG.dal,description:"Kidney bean curry with rice."},
+
+  // INDIAN MAINCOURSE
+  {id:"im-001",category:"Indian Maincourse",name:"Mix Veg",price:160,image:IMG.paneer,description:"Mixed vegetables in rich gravy."},
+  {id:"im-002",category:"Indian Maincourse",name:"Aloo Gobi",price:140,image:IMG.aloo,description:"Potato and cauliflower curry."},
+  {id:"im-003",category:"Indian Maincourse",name:"Bhindi Masala",price:150,image:IMG.bhindi,description:"Spiced okra curry."},
+  {id:"im-004",category:"Indian Maincourse",name:"Chana Masala",price:150,image:IMG.chana,description:"Spicy chickpea curry."},
+  {id:"im-005",category:"Indian Maincourse",name:"Malai Kofta",price:200,image:IMG.kofta,description:"Soft paneer balls in creamy gravy."},
+  {id:"im-006",category:"Indian Maincourse",name:"Kaju Curry",price:220,image:IMG.kaju,description:"Cashew nut curry in rich gravy."},
+
+  // DESSERTS
+  {id:"ds-001",category:"Desserts",name:"Gulab Jamun (2 pcs)",price:60,image:IMG.gulab,description:"Soft golden dumplings in sugar syrup.",popular:true},
+  {id:"ds-002",category:"Desserts",name:"Rasmalai (2 pcs)",price:80,image:IMG.rasmalai,description:"Soft paneer discs in saffron milk.",popular:true},
+  {id:"ds-003",category:"Desserts",name:"Gajar Halwa",price:70,image:IMG.halwa,description:"Carrot halwa with ghee and nuts."},
+  {id:"ds-004",category:"Desserts",name:"Kheer",price:60,image:IMG.kheer,description:"Rice pudding with cardamom."},
+  {id:"ds-005",category:"Desserts",name:"Ice Cream (2 scoops)",price:60,image:IMG.icecream,description:"Vanilla, chocolate or strawberry."},
+
+  // BREAKFAST
+  {id:"bf-001",category:"Breakfast",name:"Poha",price:40,image:IMG.poha,description:"Flattened rice with peanuts and lemon."},
+  {id:"bf-002",category:"Breakfast",name:"Upma",price:50,image:IMG.upma,description:"Semolina upma with vegetables."},
+  {id:"bf-003",category:"Breakfast",name:"Aloo Paratha (2 pcs)",price:80,image:IMG.paratha,description:"Stuffed potato parathas with curd."},
+  {id:"bf-004",category:"Breakfast",name:"Puri Bhaji",price:70,image:IMG.puri,description:"Fried puris with potato curry."},
+  {id:"bf-005",category:"Breakfast",name:"Misal Pav",price:80,image:IMG.misal,description:"Spicy Misal with soft pav."},
+
+  // SANDWICHES
+  {id:"sw-001",category:"Sandwiches",name:"Veg Sandwich",price:60,image:IMG.sandwich,description:"Fresh vegetable sandwich."},
+  {id:"sw-002",category:"Sandwiches",name:"Grilled Sandwich",price:80,image:IMG.sandwich,description:"Grilled veg sandwich."},
+  {id:"sw-003",category:"Sandwiches",name:"Paneer Sandwich",price:100,image:IMG.sandwich,description:"Spiced paneer sandwich."},
+  {id:"sw-004",category:"Sandwiches",name:"Cheese Sandwich",price:90,image:IMG.sandwich,description:"Cheese loaded sandwich."},
+  {id:"sw-005",category:"Sandwiches",name:"Bombay Sandwich",price:80,image:IMG.sandwich,description:"Mumbai-style veg sandwich."},
+
+  // BURGERS
+  {id:"bg-001",category:"Burgers",name:"Veg Burger",price:70,image:IMG.burger,description:"Classic veg patty burger."},
+  {id:"bg-002",category:"Burgers",name:"Paneer Burger",price:100,image:IMG.burger,description:"Crispy paneer patty burger.",popular:true},
+  {id:"bg-003",category:"Burgers",name:"Cheese Burger",price:90,image:IMG.burger,description:"Veg burger with extra cheese."},
+  {id:"bg-004",category:"Burgers",name:"Double Patty Burger",price:130,image:IMG.burger,description:"Double veg patty with cheese."},
+  {id:"bg-005",category:"Burgers",name:"Mexican Burger",price:120,image:IMG.burger,description:"Spicy Mexican style burger."},
+
+  // PANEER DISHES
+  {id:"pd-001",category:"Paneer Dishes",name:"Paneer Butter Masala",price:200,sizes:{half:120,full:200},image:IMG.paneer,description:"Creamy tomato-based paneer curry with butter and spices.",popular:true},
+  {id:"pd-002",category:"Paneer Dishes",name:"Kadai Paneer",price:190,image:IMG.paneer,description:"Paneer cooked with capsicum and kadai masala."},
+  {id:"pd-003",category:"Paneer Dishes",name:"Shahi Paneer",price:210,image:IMG.paneer,description:"Rich and creamy royal paneer curry."},
+  {id:"pd-004",category:"Paneer Dishes",name:"Paneer Tikka Masala",price:220,image:IMG.paneer,description:"Grilled paneer tikka in masala gravy."},
+  {id:"pd-005",category:"Paneer Dishes",name:"Palak Paneer",price:180,image:IMG.paneer,description:"Paneer cubes in creamy spinach gravy."},
+  {id:"pd-006",category:"Paneer Dishes",name:"Paneer Bhurji",price:170,image:IMG.paneer,description:"Scrambled paneer with onions and spices."},
+
+  // FRIED RICE
+  {id:"fr-001",category:"Fried Rice",name:"Veg Fried Rice",price:120,image:IMG.rice,description:"Classic veg fried rice."},
+  {id:"fr-002",category:"Fried Rice",name:"Paneer Fried Rice",price:160,image:IMG.rice,description:"Fried rice with paneer cubes."},
+  {id:"fr-003",category:"Fried Rice",name:"Schezwan Fried Rice",price:140,image:IMG.rice,description:"Spicy Schezwan fried rice.",popular:true},
+  {id:"fr-004",category:"Fried Rice",name:"Manchurian Fried Rice",price:160,image:IMG.rice,description:"Fried rice with Manchurian gravy."},
+  {id:"fr-005",category:"Fried Rice",name:"Triple Fried Rice",price:180,image:IMG.rice,description:"Rice, noodles and Manchurian combo."},
+
+  // BIRYANI
+  {id:"br-001",category:"Biryani",name:"Veg Biryani",price:150,image:IMG.biryani,description:"Aromatic veg biryani with raita.",popular:true},
+  {id:"br-002",category:"Biryani",name:"Paneer Biryani",price:190,image:IMG.biryani,description:"Biryani with spiced paneer cubes."},
+  {id:"br-003",category:"Biryani",name:"Hyderabadi Veg Biryani",price:180,image:IMG.biryani,description:"Spicy Hyderabadi style veg biryani."},
+  {id:"br-004",category:"Biryani",name:"Mushroom Biryani",price:180,image:IMG.biryani,description:"Biryani with fresh mushrooms."},
+  {id:"br-005",category:"Biryani",name:"Jeera Rice",price:100,image:IMG.rice,description:"Cumin flavoured basmati rice."},
+
+  // SOUP
+  {id:"sp-001",category:"Soup",name:"Tomato Soup",price:70,image:IMG.soup,description:"Classic creamy tomato soup."},
+  {id:"sp-002",category:"Soup",name:"Sweet Corn Soup",price:80,image:IMG.soup,description:"Sweet corn soup with veggies."},
+  {id:"sp-003",category:"Soup",name:"Hot & Sour Soup",price:80,image:IMG.soup,description:"Spicy and tangy soup."},
+  {id:"sp-004",category:"Soup",name:"Manchow Soup",price:90,image:IMG.soup,description:"Spicy Manchow soup with crispy noodles."},
+  {id:"sp-005",category:"Soup",name:"Lemon Coriander Soup",price:80,image:IMG.soup,description:"Refreshing lemon coriander soup."},
+
+  // PASTA
+  {id:"pa-001",category:"Pasta",name:"Red Sauce Pasta",price:130,image:IMG.pasta,description:"Pasta in tangy tomato sauce."},
+  {id:"pa-002",category:"Pasta",name:"White Sauce Pasta",price:140,image:IMG.pasta,description:"Creamy white sauce pasta.",popular:true},
+  {id:"pa-003",category:"Pasta",name:"Mix Sauce Pasta",price:150,image:IMG.pasta,description:"Pasta in mixed red and white sauce."},
+  {id:"pa-004",category:"Pasta",name:"Cheese Pasta",price:160,image:IMG.pasta,description:"Extra cheesy pasta."},
+
+  // MAGGIE
+  {id:"mg-001",category:"Maggie",name:"Plain Maggie",price:50,image:IMG.maggie,description:"Classic masala Maggie."},
+  {id:"mg-002",category:"Maggie",name:"Cheese Maggie",price:70,image:IMG.maggie,description:"Maggie with melted cheese."},
+  {id:"mg-003",category:"Maggie",name:"Veg Maggie",price:60,image:IMG.maggie,description:"Maggie with mixed vegetables."},
+  {id:"mg-004",category:"Maggie",name:"Schezwan Maggie",price:70,image:IMG.maggie,description:"Spicy Schezwan Maggie."},
+
+  // NOODLES
+  {id:"nd-001",category:"Noodles",name:"Veg Noodles",price:110,image:IMG.noodles,description:"Classic veg noodles."},
+  {id:"nd-002",category:"Noodles",name:"Hakka Noodles",price:120,image:IMG.noodles,description:"Hakka style noodles."},
+  {id:"nd-003",category:"Noodles",name:"Schezwan Noodles",price:130,image:IMG.noodles,description:"Spicy Schezwan noodles.",popular:true},
+  {id:"nd-004",category:"Noodles",name:"Paneer Noodles",price:150,image:IMG.noodles,description:"Noodles with paneer."},
+
+  // SALAD
+  {id:"sa-001",category:"Salad",name:"Green Salad",price:60,image:IMG.salad,description:"Fresh cucumber, tomato and onion salad."},
+  {id:"sa-002",category:"Salad",name:"Kachumber Salad",price:70,image:IMG.salad,description:"Chopped veg salad with lemon."},
+  {id:"sa-003",category:"Salad",name:"Fruit Salad",price:90,image:IMG.salad,description:"Fresh seasonal fruit salad."},
+
+  // PAPAD
+  {id:"pp-001",category:"Papad",name:"Masala Papad",price:40,image:IMG.papad,description:"Crispy papad topped with onion and tomato."},
+  {id:"pp-002",category:"Papad",name:"Roasted Papad",price:25,image:IMG.papad,description:"Simple roasted papad."},
+  {id:"pp-003",category:"Papad",name:"Fried Papad",price:30,image:IMG.papad,description:"Crispy fried papad."},
+
+  // RAITA
+  {id:"ra-001",category:"Raita",name:"Boondi Raita",price:60,image:IMG.raita,description:"Yogurt with crispy boondi."},
+  {id:"ra-002",category:"Raita",name:"Cucumber Raita",price:50,image:IMG.raita,description:"Cool cucumber raita."},
+  {id:"ra-003",category:"Raita",name:"Mix Veg Raita",price:60,image:IMG.raita,description:"Yogurt with mixed vegetables."},
+
+  // TANDOORI STARTER
+  {id:"ts-001",category:"Tandoori Starter",name:"Paneer Tikka",price:200,image:IMG.tandoori,description:"Char-grilled paneer tikka.",popular:true},
+  {id:"ts-002",category:"Tandoori Starter",name:"Malai Paneer Tikka",price:220,image:IMG.tandoori,description:"Creamy malai paneer tikka."},
+  {id:"ts-003",category:"Tandoori Starter",name:"Tandoori Mushroom",price:200,image:IMG.mushroom,description:"Grilled tandoori mushrooms."},
+  {id:"ts-004",category:"Tandoori Starter",name:"Hara Bhara Kabab",price:180,image:IMG.kebab,description:"Spinach and peas kabab."},
+  {id:"ts-005",category:"Tandoori Starter",name:"Veg Seekh Kabab",price:190,image:IMG.kebab,description:"Minced veg seekh kabab."},
+
+  // DAL
+  {id:"dl-001",category:"Dal",name:"Dal Fry",price:120,image:IMG.dal,description:"Classic yellow dal fry."},
+  {id:"dl-002",category:"Dal",name:"Dal Tadka",price:140,image:IMG.dal,description:"Dal with ghee tadka.",popular:true},
+  {id:"dl-003",category:"Dal",name:"Dal Makhani",price:180,image:IMG.dal,description:"Creamy black lentil dal.",popular:true},
+  {id:"dl-004",category:"Dal",name:"Dal Panchmel",price:160,image:IMG.dal,description:"Five lentil mixed dal."},
+
+  // RICE
+  {id:"rc-001",category:"Rice",name:"Steamed Rice",price:70,image:IMG.rice,description:"Plain steamed basmati rice."},
+  {id:"rc-002",category:"Rice",name:"Jeera Rice",price:100,image:IMG.rice,description:"Cumin flavoured rice."},
+  {id:"rc-003",category:"Rice",name:"Veg Pulao",price:130,image:IMG.rice,description:"Rice with mixed vegetables."},
+  {id:"rc-004",category:"Rice",name:"Kashmiri Pulao",price:160,image:IMG.rice,description:"Sweet and fruity pulao."}
+];
+
+const CATEGORY_ORDER = ["South Indian","Chopsuey","Fries / Momos","Beverages","Refreshers","Pizza","Kathi Roll","Snacks","Mocktails","Shakes","Thali","Chinese Starter","Chinese Maincourse","Indian Combos","Indian Maincourse","Desserts","Breakfast","Sandwiches","Burgers","Paneer Dishes","Fried Rice","Biryani","Soup","Pasta","Maggie","Noodles","Salad","Papad","Raita","Tandoori Starter","Dal","Rice"];
+const CATEGORY_ICONS = {"South Indian":"fa-utensils","Chopsuey":"fa-bowl-food","Fries / Momos":"fa-cookie","Beverages":"fa-mug-hot","Refreshers":"fa-glass-water","Pizza":"fa-pizza-slice","Kathi Roll":"fa-burrito","Snacks":"fa-cookie-bite","Mocktails":"fa-martini-glass","Shakes":"fa-blender","Thali":"fa-plate-wheat","Chinese Starter":"fa-fire","Chinese Maincourse":"fa-bowl-rice","Indian Combos":"fa-utensils","Indian Maincourse":"fa-bowl-food","Desserts":"fa-ice-cream","Breakfast":"fa-bread-slice","Sandwiches":"fa-bread-slice","Burgers":"fa-burger","Paneer Dishes":"fa-cheese","Fried Rice":"fa-bowl-rice","Biryani":"fa-bowl-food","Soup":"fa-mug-saucer","Pasta":"fa-bowl-food","Maggie":"fa-bowl-food","Noodles":"fa-bowl-food","Salad":"fa-leaf","Papad":"fa-cookie","Raita":"fa-bowl-food","Tandoori Starter":"fa-fire","Dal":"fa-bowl-food","Rice":"fa-bowl-rice"};
+
+/* ===== STATE ===== */
+let cart = JSON.parse(localStorage.getItem("jayAmbeyCart")) || [];
+let activeCategory = "All";
+let searchQuery = "";
+let selectedFood = null, selectedSize = null, selectedQty = 1;
+
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+
+const cartDrawer=$("#cartDrawer"),cartOverlay=$("#cartOverlay"),cartItemsEl=$("#cartItems"),cartCount=$("#cartCount"),cartSubtotal=$("#cartSubtotal"),cartDelivery=$("#cartDelivery"),cartTotal=$("#cartTotal"),cartSummary=$("#cartSummary"),cartActions=$("#cartActions"),foodModal=$("#foodModal"),foodModalOverlay=$("#foodModalOverlay"),foodModalBody=$("#foodModalBody"),checkoutModal=$("#checkoutModal"),checkoutOverlay=$("#checkoutOverlay"),mobileCartBar=$("#mobileCartBar"),mobileCartTotal=$("#mobileCartTotal");
+
+const fp = n => "₹" + Number(n).toLocaleString("en-IN");
+const getCartTotal = () => cart.reduce((s,i)=>s+i.price*i.qty,0);
+const getCartCount = () => cart.reduce((s,i)=>s+i.qty,0);
+const saveCart = () => localStorage.setItem("jayAmbeyCart", JSON.stringify(cart));
+
+function showToast(msg,type="success"){
+  const t=$("#toast");
+  t.innerHTML=`<i class="fas fa-${type==="success"?"check-circle":"info-circle"}"></i> ${msg}`;
+  t.className="toast "+type+" show";
+  setTimeout(()=>t.classList.remove("show"),2500);
+}
+
+/* ===== CATEGORY BAR ===== */
+function renderCategoryBar(){
+  const s=$("#categoryScroll");
+  s.innerHTML=["All",...CATEGORY_ORDER].map(c=>`<button class="cat-chip ${c===activeCategory?"active":""}" data-cat="${c}">${c}</button>`).join("");
+  s.querySelectorAll(".cat-chip").forEach(ch=>ch.addEventListener("click",()=>{
+    activeCategory=ch.dataset.cat;renderCategoryBar();renderMenu();
+    if(activeCategory!=="All")document.getElementById("menu").scrollIntoView({behavior:"smooth"});
+  }));
+}
+
+/* ===== MENU ===== */
+function renderMenu(){
+  const c=$("#menuContainer");
+  let f=menuItems;
+  if(activeCategory!=="All")f=f.filter(i=>i.category===activeCategory);
+  if(searchQuery.trim()){const q=searchQuery.trim().toLowerCase();f=f.filter(i=>i.name.toLowerCase().includes(q)||i.category.toLowerCase().includes(q));}
+  if(!f.length){c.innerHTML=`<div class="cart-empty"><i class="fas fa-search"></i><p>No items found. Try a different search.</p></div>`;return;}
+  const g={};f.forEach(i=>{(g[i.category]=g[i.category]||[]).push(i)});
+  let html="";
+  CATEGORY_ORDER.forEach(cat=>{
+    if(!g[cat])return;
+    html+=`<div class="menu-category"><div class="menu-category-header"><div class="menu-category-icon"><i class="fas ${CATEGORY_ICONS[cat]||"fa-utensils"}"></i></div><h2>${cat}</h2></div><div class="menu-grid">`;
+    g[cat].forEach(it=>{
+      const p=it.sizes?`From ${fp(it.sizes.half)}`:fp(it.price);
+      html+=`<div class="food-card" data-id="${it.id}">
+        <div class="food-card-img-wrap">
+          <img class="food-card-img" src="${it.image}" alt="${it.name}" loading="lazy" onerror="this.onerror=null;this.src='${FALLBACK_FOOD_IMAGE}'"/>
+          <div class="veg-indicator" title="Vegetarian"></div>
+          ${it.popular?'<span class="popular-badge">⭐ Popular</span>':''}
+          <span class="food-card-price-badge">${p}</span>
+        </div>
+        <div class="food-card-body">
+          <h3>${it.name}</h3>
+          <p class="food-card-desc">${it.description}</p>
+          <div class="food-card-footer">
+            <span class="food-card-price">${p}</span>
+            <button class="add-btn" data-id="${it.id}" aria-label="Add ${it.name}"><i class="fas fa-plus"></i> ADD</button>
+          </div>
+        </div>
+      </div>`;
+    });
+    html+=`</div></div>`;
+  });
+  c.innerHTML=html;
+  c.querySelectorAll(".food-card").forEach(card=>card.addEventListener("click",e=>{if(e.target.closest(".add-btn"))return;openFoodModal(card.dataset.id)}));
+  c.querySelectorAll(".add-btn").forEach(b=>b.addEventListener("click",e=>{
+    e.stopPropagation();
+    const it=menuItems.find(i=>i.id===b.dataset.id);
+    if(it.sizes)openFoodModal(it.id);else addToCart(it,null,1);
+  }));
+}
+
+/* ===== OFFERS ===== */
+function renderOffers(){
+  const g=$("#offersGrid");
+  const sp=menuItems.filter(i=>i.popular).slice(0,4);
+  g.innerHTML=sp.map(i=>`<div class="offer-card" data-id="${i.id}"><img class="offer-card-img" src="${i.image}" alt="${i.name}" loading="lazy" onerror="this.onerror=null;this.src='${FALLBACK_FOOD_IMAGE}'"/><div class="offer-card-body"><h3>${i.name}</h3><p>${i.description}</p><span class="offer-card-price">${i.sizes?"From "+fp(i.sizes.half):fp(i.price)}</span></div></div>`).join("");
+  g.querySelectorAll(".offer-card").forEach(c=>c.addEventListener("click",()=>openFoodModal(c.dataset.id)));
+}
+
+/* ===== FOOD MODAL ===== */
+function openFoodModal(id){
+  const it=menuItems.find(i=>i.id===id);if(!it)return;
+  selectedFood=it;selectedSize=it.sizes?null:"default";selectedQty=1;
+  renderFoodModal();
+  foodModal.classList.add("open");foodModalOverlay.classList.add("open");
+  document.body.style.overflow="hidden";
+}
+function renderFoodModal(){
+  const it=selectedFood;if(!it)return;
+  let sHtml="";
+  if(it.sizes){
+    sHtml=`<div class="modal-size-options">
+      <div class="size-option ${selectedSize==="half"?"selected":""}" data-size="half"><div class="size-label">Half</div><div class="size-price">${fp(it.sizes.half)}</div></div>
+      <div class="size-option ${selectedSize==="full"?"selected":""}" data-size="full"><div class="size-label">Full</div><div class="size-price">${fp(it.sizes.full)}</div></div>
+    </div>`;
+  }
+  const price=it.sizes?(selectedSize==="half"?it.sizes.half:selectedSize==="full"?it.sizes.full:null):it.price;
+  foodModalBody.innerHTML=`<img class="modal-food-img" src="${it.image}" alt="${it.name}" loading="lazy" onerror="this.onerror=null;this.src='${FALLBACK_FOOD_IMAGE}'"/>
+    <div class="modal-food-content">
+      <h2>${it.name}</h2>
+      <p class="modal-food-desc">${it.description}</p>
+      ${sHtml}
+      <div class="modal-qty"><label>Quantity:</label><div class="qty-controls"><button class="qty-btn" id="modalQtyMinus">−</button><span class="qty-value">${selectedQty}</span><button class="qty-btn" id="modalQtyPlus">+</button></div></div>
+      <button class="btn btn-primary modal-add-btn" id="modalAddBtn" ${it.sizes&&!selectedSize?"disabled":""}>${it.sizes&&!selectedSize?"SELECT SIZE":`ADD TO CART — ${price?fp(price*selectedQty):""}`}</button>
+    </div>`;
+  foodModalBody.querySelectorAll(".size-option").forEach(el=>el.addEventListener("click",()=>{selectedSize=el.dataset.size;renderFoodModal()}));
+  foodModalBody.querySelector("#modalQtyMinus").addEventListener("click",()=>{if(selectedQty>1)selectedQty--;renderFoodModal()});
+  foodModalBody.querySelector("#modalQtyPlus").addEventListener("click",()=>{selectedQty++;renderFoodModal()});
+  foodModalBody.querySelector("#modalAddBtn").addEventListener("click",()=>{
+    if(selectedFood.sizes&&!selectedSize)return;
+    addToCart(selectedFood,selectedSize,selectedQty);closeFoodModal();
+  });
+}
+function closeFoodModal(){
+  foodModal.classList.remove("open");foodModalOverlay.classList.remove("open");
+  document.body.style.overflow="";selectedFood=null;selectedSize=null;selectedQty=1;
+}
+
+/* ===== CART ===== */
+function addToCart(item,size,qty){
+  let price,sizeLabel=null;
+  if(item.sizes&&size){price=item.sizes[size];sizeLabel=size==="half"?"Half":"Full";}
+  else price=item.price;
+  const ex=cart.find(c=>c.id===item.id&&c.size===sizeLabel);
+  if(ex)ex.qty+=qty;else cart.push({id:item.id,name:item.name,image:item.image,price,size:sizeLabel,qty});
+  saveCart();updateCartUI();showToast(`${item.name} added to cart`);
+}
+function removeFromCart(i){cart.splice(i,1);saveCart();updateCartUI()}
+function updateQty(i,d){cart[i].qty+=d;if(cart[i].qty<=0)removeFromCart(i);else{saveCart();updateCartUI()}}
+function clearCart(){cart=[];saveCart();updateCartUI();showToast("Cart cleared")}
+
+function updateCartUI(){
+  const cnt=getCartCount(),sub=getCartTotal(),del=cnt>0?DELIVERY_CHARGE:0,tot=sub+del;
+  cartCount.textContent=cnt;cartCount.style.display=cnt>0?"flex":"none";
+  mobileCartTotal.textContent=fp(tot);
+  mobileCartBar.style.display=cnt>0?"block":"none";
+  cartSubtotal.textContent=fp(sub);cartDelivery.textContent=fp(del);cartTotal.textContent=fp(tot);
+  if(!cart.length){
+    cartItemsEl.innerHTML=`<div class="cart-empty"><i class="fas fa-shopping-bag"></i><p>Your cart is empty</p><p style="font-size:0.8rem;margin-top:8px;">Add delicious items from the menu</p></div>`;
+    cartSummary.style.display="none";cartActions.style.display="none";
+  }else{
+    cartSummary.style.display="block";cartActions.style.display="flex";
+    cartItemsEl.innerHTML=cart.map((it,i)=>`<div class="cart-item">
+      <img class="cart-item-img" src="${it.image}" alt="${it.name}" loading="lazy" onerror="this.onerror=null;this.src='${FALLBACK_FOOD_IMAGE}'"/>
+      <div class="cart-item-info"><h4>${it.name}</h4>${it.size?`<div class="cart-item-size">${it.size}</div>`:""}
+        <div class="cart-item-bottom"><div class="qty-controls"><button class="qty-btn" data-action="minus" data-idx="${i}">−</button><span class="qty-value">${it.qty}</span><button class="qty-btn" data-action="plus" data-idx="${i}">+</button></div><span class="cart-item-price">${fp(it.price*it.qty)}</span></div>
+      </div>
+      <button class="cart-item-remove" data-action="remove" data-idx="${i}"><i class="fas fa-trash-alt"></i></button>
+    </div>`).join("");
+    cartItemsEl.querySelectorAll("[data-action]").forEach(b=>b.addEventListener("click",()=>{
+      const i=+b.dataset.idx,a=b.dataset.action;
+      if(a==="minus")updateQty(i,-1);if(a==="plus")updateQty(i,1);if(a==="remove")removeFromCart(i);
+    }));
+  }
+}
+
+/* ===== CART DRAWER ===== */
+function openCart(){cartDrawer.classList.add("open");cartOverlay.classList.add("open");document.body.style.overflow="hidden"}
+function closeCart(){cartDrawer.classList.remove("open");cartOverlay.classList.remove("open");document.body.style.overflow=""}
+
+/* ===== CHECKOUT ===== */
+function openCheckout(){
+  if(!cart.length){showToast("Your cart is empty","info");return;}
+  const sub=getCartTotal(),del=DELIVERY_CHARGE,tot=sub+del;
+  $("#checkoutSummary").innerHTML=`<div class="summary-row"><span>Subtotal</span><span>${fp(sub)}</span></div><div class="summary-row"><span>Delivery</span><span>${fp(del)}</span></div><div class="summary-row total"><span>Total</span><span>${fp(tot)}</span></div>`;
+  checkoutModal.classList.add("open");checkoutOverlay.classList.add("open");document.body.style.overflow="hidden";
+}
+function closeCheckout(){checkoutModal.classList.remove("open");checkoutOverlay.classList.remove("open");document.body.style.overflow=""}
+
+/* ===== WHATSAPP ORDER ===== */
+function placeOrder(e){
+  e.preventDefault();
+  const name=$("#custName").value.trim(),mobile=$("#custMobile").value.trim();
+  const ot=document.querySelector('input[name="orderType"]:checked').value;
+  const pay=document.querySelector('input[name="payment"]:checked').value;
+  const addr=$("#custAddress").value.trim(),lm=$("#custLandmark").value.trim(),pin=$("#custPincode").value.trim();
+  if(!name||!mobile){showToast("Please fill required fields","info");return;}
+  if(mobile.length<10){showToast("Enter valid 10-digit mobile","info");return;}
+  if(ot==="Home Delivery"&&!addr){showToast("Enter delivery address","info");return;}
+  if(getCartTotal()<MINIMUM_ORDER){showToast(`Minimum order is ${fp(MINIMUM_ORDER)}`,"info");return;}
+  const sub=getCartTotal(),del=ot==="Home Delivery"?DELIVERY_CHARGE:0,tot=sub+del;
+  let msg=`🍽️ *NEW ORDER - JAY AMBEY RESTAURANT*\n\n*Customer:*\nName: ${name}\nMobile: ${mobile}\n\n*Order Type:*\n${ot}\n\n`;
+  if(ot==="Home Delivery"){msg+=`*Address:*\n${addr}`;if(lm)msg+=`\nLandmark: ${lm}`;if(pin)msg+=`\nPincode: ${pin}`;msg+=`\n\n`;}
+  msg+=`*Items:*\n\n`;
+  cart.forEach((it,i)=>{msg+=`${i+1}. ${it.name}${it.size?" - "+it.size:""} × ${it.qty} = ₹${it.price*it.qty}\n`;});
+  msg+=`\nSubtotal: ₹${sub}\n`;
+  if(ot==="Home Delivery")msg+=`Delivery: ₹${del}\n`;
+  msg+=`\n*TOTAL: ₹${tot}*\n\n*Payment:*\n${pay}\n\nPlease confirm my order.\n\nThank you.`;
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,"_blank");
+  clearCart();closeCheckout();closeCart();showToast("Order sent on WhatsApp!");
+}
+
+/* ===== SEARCH ===== */
+function setupSearch(){
+  const inp=$("#searchInput"),cl=$("#searchClear");
+  inp.addEventListener("input",()=>{searchQuery=inp.value;cl.classList.toggle("visible",searchQuery.length>0);renderMenu();});
+  cl.addEventListener("click",()=>{inp.value="";searchQuery="";cl.classList.remove("visible");renderMenu();});
+}
+
+/* ===== HEADER / NAV ===== */
+function setupHeaderScroll(){const h=$("#header");window.addEventListener("scroll",()=>h.classList.toggle("scrolled",window.scrollY>40))}
+function setupMobileNav(){
+  const hb=$("#hamburger"),nav=$("#nav");
+  hb.addEventListener("click",()=>{hb.classList.toggle("active");nav.classList.toggle("open")});
+  nav.querySelectorAll(".nav-link").forEach(l=>l.addEventListener("click",()=>{hb.classList.remove("active");nav.classList.remove("open")}));
+}
+function setupNavLinks(){const ls=$$(".nav-link");ls.forEach(l=>l.addEventListener("click",()=>{ls.forEach(x=>x.classList.remove("active"));l.classList.add("active")}))}
+
+/* ===== INIT ===== */
+function init(){
+  renderCategoryBar();renderMenu();renderOffers();
+  setupSearch();setupHeaderScroll();setupMobileNav();setupNavLinks();updateCartUI();
+
+  $("#cartBtn").addEventListener("click",openCart);
+  $("#mobileCartBtn").addEventListener("click",openCart);
+  $("#cartClose").addEventListener("click",closeCart);
+  $("#cartOverlay").addEventListener("click",closeCart);
+  $("#continueShoppingBtn").addEventListener("click",closeCart);
+  $("#clearCartBtn").addEventListener("click",clearCart);
+  $("#checkoutBtn").addEventListener("click",()=>{closeCart();openCheckout()});
+  $("#foodModalClose").addEventListener("click",closeFoodModal);
+  foodModalOverlay.addEventListener("click",closeFoodModal);
+  $("#checkoutClose").addEventListener("click",closeCheckout);
+  checkoutOverlay.addEventListener("click",closeCheckout);
+  $("#checkoutForm").addEventListener("submit",placeOrder);
+
+  document.querySelectorAll('input[name="orderType"]').forEach(r=>r.addEventListener("change",()=>{
+    const af=$("#addressFields"),isDel=r.value==="Home Delivery";
+    af.style.display=isDel?"block":"none";$("#custAddress").required=isDel;
+  }));
+
+  $("#heroOrderBtn").addEventListener("click",()=>document.getElementById("menu").scrollIntoView({behavior:"smooth"}));
+
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeFoodModal();closeCheckout();closeCart()}});
+
+  // JSON-LD
+  const ld={"@context":"https://schema.org","@type":"Restaurant",name:"Jay Ambey Restaurant",alternateName:"जय अम्बे रेस्टोरेंट",telephone:"07080003020",servesCuisine:["Indian","Chinese","South Indian","Pizza","Snacks"],address:{"@type":"PostalAddress",addressCountry:"IN"},url:MAPS_LINK,priceRange:"₹₹"};
+  const s=document.createElement("script");s.type="application/ld+json";s.textContent=JSON.stringify(ld);document.head.appendChild(s);
+}
+
+document.addEventListener("DOMContentLoaded",init);
+</script>
+</body>
+</html>
